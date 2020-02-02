@@ -1,0 +1,1 @@
+// export const IcoSample = require('./ico_sample.svg') as string
