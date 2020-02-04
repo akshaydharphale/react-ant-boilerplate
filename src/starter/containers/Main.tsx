@@ -1,4 +1,4 @@
-import { Layout, Icon } from 'antd'
+import { Layout, Table, Avatar } from 'antd'
 import React from 'react'
 import StarterContext from '../context/starter-context'
 // import {  } from '../../components'
@@ -27,17 +27,50 @@ class Main extends React.PureComponent<Props, LocalState> {
     const { Content } = Layout
     // const { connectivity } = state
 
+    const columns = [
+      {
+        title: 'Avatar',
+        dataIndex: 'avatar',
+        key: 'avatar',
+        render: (avatar: any) => <Avatar src={avatar} />
+      },
+      {
+        title: 'Name',
+        dataIndex: 'first_name',
+        key: 'first_name',
+      },
+      {
+        title: 'Email',
+        dataIndex: 'email',
+        key: 'email',
+      },
+      {
+        title: 'Gender',
+        dataIndex: 'gender',
+        key: 'gender',
+      }, {
+        title: 'City',
+        dataIndex: 'city',
+        key: 'city',
+      }, {
+        title: 'Country',
+        dataIndex: 'country',
+        key: 'country',
+      }
+    ]
+
     return (
       <Layout className="starter-container">
         <Layout>
-          <Content>
-              Starter Init
+          <Content>{this.context.state.data.length > 0 &&
+            <Table dataSource={this.context.state.data} columns={columns} />
+          }
           </Content>
         </Layout>
         {
           this.context.state.loader &&
-          <div className="loader">
-            <Icon style={{ fontSize: '36px', color: '#fff' }} type="loading" />
+          <div className='box'>
+            <div className="loader" />
           </div>
         }
       </Layout >
