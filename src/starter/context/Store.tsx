@@ -24,8 +24,10 @@ class Store extends Component {
     }
 
     getData(token: string) {
+        this.setState({ loader: true })
         getData(token)
             .then((response: any) => {
+                this.setState({ loader: false })
                 this.setApplicationState('data', response.data)
             })
             .catch((error: ApiError) => {
